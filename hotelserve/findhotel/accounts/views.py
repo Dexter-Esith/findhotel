@@ -115,8 +115,8 @@ def add_hotel(request):
 
 
 
-def edit_hotel(request, kutu):
-    edit = Hotel.objects.get(id=kutu)
+def edit_hotel(request, id):
+    edit = Hotel.objects.get(id=id)
     form = HotelForm(instance=edit)
     if request.method == "POST":
         form = HotelForm(request.POST)
