@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+
+    <form method="POST" action="#">
+        {% csrf_token %}
+        {{form}}
+
+        <input class="see-more" type="submit" value="Add Hotel">
+    </form>
+
+</body>
+
+{% endblock %}

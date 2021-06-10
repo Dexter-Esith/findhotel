@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+			<form action="#" method="POST">
+				{% csrf_token %}
+				<div id="sc-edprofile">
+					<h1>Edit Profile</h1>
+					<div class="sc-container">
+						<label for="Username">Username:</label>
+						<input type="text" name="username"  value="{{user_instance.username}}" required/>
+						<label for="Username">First Name:</label>
+						<input type="text" name="first_name"  value="{{user_instance.first_name}}" required/>
+						<label for="Username">Last Name:</label>
+						<input type="text" name="last_name"  value="{{user_instance.last_name}}" required/>
+						<label for="Username">E-mail:</label>
+						<input type="email" name="email" value="{{user_instance.email}}" required/>
+						<label for="Username">Gender:</label>
+						<select>
+							<option value="">Male</option>
+							<option value="">Female</option>
+						</select>
+						<label for="Username">Enter Password:</label>
+						<input type="password" name="password1" required/>
+						<label for="Username">Repeat Password:</label>
+						<input type="password" name="password2" required/>
+
+						<input type="submit" value="Save Changes" />
+					</div>
+			  </div>
+			</form>
+
+{% for message in messages %}
+<div class="rame-rume">
+	<p>{{message}}</p>
+</div>
+{% endfor %}
+{% endblock %}

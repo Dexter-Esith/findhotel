@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Holiday</title>
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,700' rel='stylesheet' type='text/css'>
+  <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/flexslider.css' %}" rel="stylesheet">
+  <link href="{% static 'css/templatemo-style.css' %}" rel="stylesheet">
+  <link href="{% static 'js/templatemo-style.js' %}" rel="stylesheet">
+
+
+  </head>
+  <body class="tm-gray-bg">
+
+
+  	<!-- Header -->
+
+  	<div class="first-block">
+                   <a class="ez" href="/">HOTELPEDIA</a>
+                <nav>
+                    <ul class="nav-ul">
+						<li class="nav-li"><a href="{% url 'hotel:homepage' %}" class="active nav-a">Home</a></li>
+						<li class="nav-li"><a href="{% url 'hotel:about' %}"class='nav-a'>About</a></li>
+						<li class="nav-li"><a href="{% url 'hotel:tours' %}"class='nav-a'>Our Tours</a></li>
+						<li class="nav-li"><a href="{% url 'hotel:contact' %}"class='nav-a'>Contact</a></li>
+                    </ul>
+                </nav>
+				<div class="nav-h">
+
+						
+
+					
+
+
+					{% if user.is_authenticated %}
+						<li>Hello, {{user.username}}</li>
+						<li><a href="{% url 'accounts:addhotel' %}">Add Hotel</a></li>
+						<li><a href="{% url 'accounts:editprofile' %}">Profile</a></li>
+						<li><a href="{% url 'accounts:signout' %}">Sign Out</a></li>
+					{% else %}
+					<!-- Button to open the modal register form -->
+					
+					<div class="nac-qoc">
+						<button onclick="document.getElementById('register_id').style.display='block'">Register</button>
+
+						<!-- The Modal -->
+						<div id="register_id" class="modal">
+
+						<!-- Modal Content -->
+						<form class="modal-content animate" action="{% url 'accounts:register' %}" method="POST">
+							{% csrf_token %}
+							<div class="container container-new">
+								<p>Please, fill in this form to create an account.</p><hr>
+								<span onclick="document.getElementById('register_id').style.display='none'"
+								class="close" title="Close">&times;</span>
+								<input type="text" placeholder="Username" name="username" id="username" required>
+								<input type="text" placeholder="First Name" name="first_name" id="first-name" required>
+								<input type="text" placeholder="Last Name" name="last_name" id="last-name" required>
+								<input type="text" placeholder="Email" name="email" id="email" required>
+								<input type="password" placeholder="Password" name="password1" id="psw" required>
+								<input type="password" placeholder="Repeat Password" name="password2" id="psw-repeat" required>
+
+								<p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+								<a href="{% url 'accounts:register' %}"><button type="submit" class="gilaki" >Create an account</button></a>
+								</div>
+
+							<div class="container container-new" style="background-color:#f1f1f1">
+								<button type="button" onclick="document.getElementById('register_id').style.display='none'" class="cancelbtn">Cancel</button>
+								<label class="arafers">
+								<h>Already have an account?</h>
+								<button class="ara" id="register_to_login">Login</button>
+								</label>
+							</div>
+						</form>
+						</div>
+						</div>
+						<div class="menu-btn">
+						<div class="menu-btn__burger"></div>
+						</div>
+						<script src="templatemo-script.js"></script>
+
+
+
+						<!-- Button to open the modal login form -->
+						<button class="gio" onclick="document.getElementById('login_id').style.display='block'">Login</button>
+
+						<!-- The Modal -->
+						<div id="login_id" class="modal">
+						
+
+						<!-- Modal Content -->
+						<form class="modal-content animate" action="{% url 'accounts:signin' %}" method="POST">
+							{% csrf_token %}
+							<div class="imgcontainer">
+							<img src="{% static 'img/img_avatar2.png' %}" alt="Avatar" class="avatar">
+							</div>
+
+							<div class="container container-new">
+								<span onclick="document.getElementById('login_id').style.display='none'"
+						class="close" title="Close">&times;</span>
+							<input type="text" placeholder="Username" name="username" required>
+							<input type="password" placeholder="Password" name="password" required>
+
+								<div class="sec-cont">
+									<button type="submit">Login</button>
+								<label>
+									<input type="checkbox" name="remember"> Remember me
+								</label>
+								</div>
+							</div>
+
+							<div class="container container-new" style="background-color:#f1f1f1">
+								<button type="button" onclick="document.getElementById('login_id').style.display='none'" class="cancelbtn">Cancel</button>
+								<span class="psw"><a href="#">Forgot password?</a></span>
+							</div>
+						
+						</form>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+                <div class="menu-btn">
+                    <div class="menu-btn__burger"></div>
+                </div>
+                <script src="templatemo-script.js"></script>
+            </div>
+
+  {% block content %}
+
+  {% endblock %}
+
+  <footer class="tm-black-bg">
+		<div class="container">
+			<div class="row">
+				<p class="tm-copyright-text">Copyright &copy; 2084 Your Company Name</p>
+			</div>
+		</div>
+
+	</footer>
+	<script type="text/javascript" src="{% static 'js/jquery-1.11.2.min.js' %}"></script>      			<!-- jQuery -->
+  	<script type="text/javascript" src="{% static 'js/moment.js' %}"></script>							<!-- moment.js -->
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>					<!-- bootstrap js -->
+	<script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>	<!-- bootstrap date time picker js, http://eonasdan.github.io/bootstrap-datetimepicker/ -->
+	<script type="text/javascript" src="{% static 'js/jquery.flexslider-min.js' %}"></script>
+<!--
+	<script src="js/froogaloop.js"></script>
+	<script src="js/jquery.fitvid.js"></script>
+-->
+   	<script type="text/javascript" src="{% static 'js/templatemo-script.js' %}"></script>      		
+	<script>
+		// HTML document is loaded. DOM is ready.
+		$(function() {
+
+			$('#hotelCarTabs a').click(function (e) {
+			  e.preventDefault()
+			  $(this).tab('show')
+			})
+
+        	$('.date').datetimepicker({
+            	format: 'MM/DD/YYYY'
+            });
+            $('.date-time').datetimepicker();
+
+			// https://css-tricks.com/snippets/jquery/smooth-scrolling/
+		  	$('a[href*=#]:not([href=#])').click(function() {
+			    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+			      var target = $(this.hash);
+			      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+			      if (target.length) {
+			        $('html,body').animate({
+			          scrollTop: target.offset().top
+			        }, 1000);
+			        return false;
+			      }
+			    }
+		  	});
+		});
+
+
+		$(window).load(function() {
+
+		    $('.flexslider').flexslider({
+			    controlNav: false
+		    });
+
+
+	  	});
+	</script>
+ </body>
+ </html>

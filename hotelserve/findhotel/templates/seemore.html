@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Container for the image gallery -->
+<div class="container">
+
+	<!-- Full-width images with number text -->
+	<div class="mySlides">
+	  <div class="numbertext">1 / 6</div>
+		<img src="{{hotels_seemore.pictures.url}}" style="width:100%">
+	</div>
+  
+	<!-- Next and previous buttons -->
+	<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+	<a class="next" onclick="plusSlides(1)">&#10095;</a>
+  
+	<!-- Image text -->
+	<div class="caption-container">
+	  <p id="caption"></p>
+	</div>
+  
+	<!-- Thumbnail images -->
+	<div class="row">
+	  <div class="column">
+		<img class="demo cursor" src="{{hotels_seemore.pictures.url}}" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+	  </div>
+	</div>
+  </div>
+  <a href="{% url 'accounts:edithotel' edithotel.id %}"> <input class="see-more" type="button" value="Edit Hotel"></a>
+
+  <!-- Hotel -->
+        <section>
+            <div class="title5">
+                <div class="titleplacement">
+                    <p class="titletext">{{ hotels_seemore.name }}</p>
+                </div>
+            </div>
+            <div class="hoteldesc">
+                <p class="titletext">Hotel Description:</p>
+                <p class="desctext">{{ hotels_seemore.long_description }}</p>
+            </div>
+        </section>
+
+{% endblock %}
